@@ -16,6 +16,7 @@ const PlayComponent = () => {
     hints: 2,
     lifelines: 2,
     currentQuestion: {},
+    previousRandomNumbers: [],
     time: { minutes: 2, seconds: 15 },
   });
 
@@ -67,22 +68,32 @@ const PlayComponent = () => {
         ...prevState,
         currentQuestionIndex: prevState.currentQuestionIndex + 1,
       }));
+      handleNextButtonClick();
     } else {
       alert('Quiz Completed!');
     }
   };
 
-  const handleNextButtonClick = () => {
-    playButtonSound();
-    if (state.currentQuestionIndex + 1 < questions.length) {
-      setState((prevState) => ({
-        ...prevState,
-        currentQuestionIndex: prevState.currentQuestionIndex + 1,
-      }));
-    } else {
-      alert('No more questions!');
-    }
-  };
+//   const handleNextButtonClick = () => {
+//     playButtonSound();
+  
+//     // Reset option visibility before moving to the next question
+//     const options = Array.from(document.querySelectorAll('.option'));
+//     options.forEach(option => {
+//       option.style.display = 'block'; // Reset to default display type
+//     });
+  
+//     if (state.currentQuestionIndex + 1 < questions.length) {
+//       setState((prevState) => ({
+//         ...prevState,
+//         currentQuestionIndex: prevState.currentQuestionIndex + 1,
+//         previousRandomNumbers: [], // Clear previously hidden options for the next question
+//       }));
+//     } else {
+//       alert('No more questions!');
+//     }
+//   };
+  
 
   const handlePreviousButtonClick = () => {
     playButtonSound();
@@ -107,6 +118,65 @@ const PlayComponent = () => {
   }
   const currentQuestion = questions[state.currentQuestionIndex];
 
+  const handleHints = () => {
+    if (state.hints > 0) {
+      const options = Array.from(document.querySelectorAll('.option'));
+      let indexOfAnswer;
+  
+      // Find the index of the correct answer
+      options.forEach((option, index) => {
+        if (option.innerHTML.toLowerCase() === state.currentQuestion.answer.toLowerCase()) {
+          indexOfAnswer = index;
+        }
+      });
+  
+      // Track how many wrong options are hidden
+      let hiddenCount = 0;
+      let hiddenOptions = [];
+  
+      // Loop to hide two wrong options
+      while (hiddenCount < 2) {  // Hide 2 wrong options
+        const randomNumber = Math.floor(Math.random() * 4);  // Random number between 0 and 3
+        
+        // Ensure we do not hide the correct answer
+        if (randomNumber !== indexOfAnswer && !hiddenOptions.includes(randomNumber)) {
+          options[randomNumber].style.visibility = 'hidden';  // Hide wrong options
+          hiddenOptions.push(randomNumber);
+          hiddenCount++;
+        }
+      }
+  
+      // Update state for remaining hints and previously hidden options
+      setState((prevState) => ({
+        ...prevState,
+        hints: prevState.hints - 1,
+        previousRandomNumbers: [...prevState.previousRandomNumbers, ...hiddenOptions],
+      }));
+    }
+  };  
+  
+  // Logic for the Next button - after hints are exhausted
+  const handleNextButtonClick = () => {
+    playButtonSound();
+  
+    // Reset visibility before moving to the next question
+    const options = Array.from(document.querySelectorAll('.option'));
+    options.forEach(option => {
+      option.style.visibility = 'visible'; // Reset to visible
+    });
+  
+    // Update state and move to the next question
+    if (state.currentQuestionIndex + 1 < questions.length) {
+      setState(prevState => ({
+        ...prevState,
+        currentQuestionIndex: prevState.currentQuestionIndex + 1,
+        previousRandomNumbers: [], // Clear hidden options for the next question
+      }));
+    } else {
+      alert('No more questions!');
+    }
+  };
+  
   return (
     <Fragment>
       <Helmet>
@@ -121,7 +191,8 @@ const PlayComponent = () => {
 
       <div className="questions">
         <div className="lifeline-container">
-          <p>
+          
+          <p className='lifeline'>
             <img
               id="lifeline_img"
               src="https://img.icons8.com/external-victoruler-solid-victoruler/64/external-chance-business-and-finance-victoruler-solid-victoruler.png"
@@ -129,7 +200,8 @@ const PlayComponent = () => {
             />
             {state.lifelines}
           </p>
-          <p>
+
+          <p onClick={handleHints} className='lifeline'>
             <img
               id="hints_img"
               src="https://img.icons8.com/?size=100&id=59810&format=png&color=000000"

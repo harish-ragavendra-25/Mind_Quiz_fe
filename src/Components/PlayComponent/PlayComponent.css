@@ -69,14 +69,12 @@ h5 {
 }
 
 /* Question Options */
-/* Question Options */
 .options-container {
   display: flex;
   flex-direction: row; /* Stack options vertically */
   margin-bottom: 20px;
   gap: 10px; /* Add space between options */
 }
-
 
 .option {
   background-color: #007bff;
@@ -157,4 +155,79 @@ button:nth-child(3) {
 
 button:nth-child(3):hover {
   background-color: #c82333;
+}
+
+/* Responsive Adjustments */
+
+/* Small screens (max-width: 768px) */
+@media (max-width: 768px) {
+  .lifeline-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .options-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .option {
+    width: 100%;
+  }
+
+  .button-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  button {
+    width: 100%;
+    font-size: 18px;
+  }
+
+  h5 {
+    font-size: 20px;
+  }
+}
+
+/* Extra small screens (max-width: 480px) */
+@media (max-width: 480px) {
+  .questions {
+    padding: 10px;
+    margin: 20px auto;
+  }
+
+  .lifeline-container {
+    padding: 0 5px;
+  }
+
+  .timer-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .timer-container span {
+    font-size: 16px;
+  }
+
+  .option {
+    font-size: 16px;
+    padding: 8px 15px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+}
+
+.lifeline{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: #2b2b2bc3;
+  cursor: pointer;
+}
+
+.lifeline:hover{
+  color: #cc5500;
+  cursor: pointer;
 }
