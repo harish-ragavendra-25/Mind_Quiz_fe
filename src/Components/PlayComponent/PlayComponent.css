@@ -69,11 +69,14 @@ h5 {
 }
 
 /* Question Options */
+/* Question Options */
 .options-container {
   display: flex;
-  justify-content: space-around;
+  flex-direction: row; /* Stack options vertically */
   margin-bottom: 20px;
+  gap: 10px; /* Add space between options */
 }
+
 
 .option {
   background-color: #007bff;
