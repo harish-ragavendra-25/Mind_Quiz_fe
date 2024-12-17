@@ -1,0 +1,157 @@
+/* General Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+}
+
+h5 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Container for the entire quiz */
+.questions {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Lifeline & Hints Section */
+.lifeline-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding: 0 10px;
+}
+
+.lifeline-container p {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.lifeline-container img {
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Timer & Question Progress */
+.timer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+.timer-container span {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+#timer_img {
+  width: 28px;
+  height: 28px;
+  margin-left: 8px;
+}
+
+/* Question Options */
+.options-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.option {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  width: 45%;
+  font-size: 18px;
+  transition: all 0.3s ease-in-out;
+}
+
+.option:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 30%;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+/* Timer Container */
+.timer-container {
+  display: flex;
+  justify-content: space-between; /* Space between progress and timer */
+  align-items: center;
+  padding: 5px 10px; /* Add spacing for elegance */
+  font-size: 18px;
+}
+
+.timer {
+  display: flex;
+  align-items: center; /* Ensure time and image align on the same line */
+}
+
+.timer img {
+  width: 24px; /* Set an appropriate size for the clock image */
+  height: 24px;
+  margin-left: 8px; /* Space between time and image */
+}
+
+.progress {
+  font-weight: bold; /* Highlight the question progress */
+}
+
+button:nth-child(2) {
+  background-color: #007bff;
+}
+
+button:nth-child(2):hover {
+  background-color: #0056b3;
+}
+
+button:nth-child(3) {
+  background-color: #dc3545;
+}
+
+button:nth-child(3):hover {
+  background-color: #c82333;
+}

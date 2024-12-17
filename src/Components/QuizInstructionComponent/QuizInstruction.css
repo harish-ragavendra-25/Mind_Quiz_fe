@@ -1,0 +1,172 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.instruction_container {
+    max-width: 90%;
+    margin: 50px auto;
+    padding: 30px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+ul {
+    list-style: none;
+    text-align: left;
+    margin: 20px 0;
+    padding: 0;
+}
+
+#main-list li {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: #444;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#main-list img {
+    margin-top: 10px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#sublist {
+    margin-top: 10px;
+}
+
+#sublist li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Buttons */
+.left, .right {
+    display: inline-block;
+    margin: 20px;
+}
+
+a {
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #3498db;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+/* Images */
+img[alt="hint_image"],
+img[alt="external-chance-business-and-finance-victoruler-solid-victoruler"] {
+    margin-top: 10px;
+    height: 80px;
+    width: 80px;
+}
+
+/* Timer/Emphasis */
+img {
+    display: block;
+    margin: 10px auto;
+    max-width: 100%; /* Ensures all images resize proportionally */
+    height: auto;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .instruction_container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    ul {
+        font-size: 1rem;
+    }
+
+    #main-list img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    img[alt="hint_image"],
+    img[alt="external-chance-business-and-finance-victoruler-solid-victoruler"] {
+        height: 60px;
+        width: 60px;
+    }
+
+    a {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    #main-list li {
+        font-size: 1rem;
+    }
+
+    img[alt="hint_image"],
+    img[alt="external-chance-business-and-finance-victoruler-solid-victoruler"] {
+        height: 50px;
+        width: 50px;
+    }
+
+    #main-list img {
+        max-width: 90%;
+        height: auto;
+    }
+
+    a {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+}

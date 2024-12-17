@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap');
+
+#logo_img {
+    border-radius: 100%;
+    display: block; /* Makes the image a block-level element */
+    margin: 0 auto; /* Centers the image horizontally */
+    width: 100px; /* Adjust as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 1rem; /* Add spacing below the image */
+    align-self: center; /* Ensures the image is centered */
+} 
+
+ul {
+    list-style-type: none; /* Removes bullets */
+    padding: 0; /* Optional: Removes default padding */
+    margin: 0; /* Optional: Removes default margin */
+}
+
+#home{
+    /* background-image: url('../../assets/img/istockphoto-543350202-1024x1024.jpg'); */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100vw;
+    justify-content: space-around;
+    display: flex;
+
+    section{
+        padding-left: 2rem;
+        padding-right: 2rem;
+        background-color: rgba(0, 0, 0, 0.7);
+        height: 80%;
+        width: 35%;
+        border-radius: 10px;
+        display: flex; /* Add */
+        flex-direction: column; /* Stack content vertically */
+        align-items: center; /* Center horizontally */
+        justify-content: center; /* Center vertically */
+    }
+
+    h1{
+        text-align: center;
+        color: white;
+        font-size: 3rem;
+        font-weight: 300;
+    }
+
+    .play-button-container{
+        width: 100%;
+    }
+
+    a.play-button{
+        list-style-type: none;
+        background-color: #57b846;
+        border-radius: 30px;
+        display: block;
+        color: white;
+        cursor: pointer;
+        padding: 1rem;
+        text-align: center;
+        transition: 0.3s linear all;
+    }
+
+    a.play-button:hover{
+        background-color:  #4a9f3b;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .auth-container{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1.5rem;
+        transition: 0.3s linear all;
+        font-weight: 200;
+    }
+
+    #login-button{
+        background-color: #ea4355;
+    }
+
+    #login-button:hover{
+        background-color: #d43b4a;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    #signup-button{
+        background-color: #48cae4;
+    }
+
+    #signup-button:hover{
+        background-color: #3ca2c4;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .auth-container .auth-buttons{
+        color: white;
+        cursor: pointer;
+        border-radius: 30px;
+        padding: 1rem 0;
+        text-align: center;
+        width: 45%;
+    }
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    text-decoration: none;
+}
+
+@media (max-width: 768px)
+{
+    #home section{
+        padding: 0 1rem;
+        width: 100%;
+        height: 100%;
+    }
+}
