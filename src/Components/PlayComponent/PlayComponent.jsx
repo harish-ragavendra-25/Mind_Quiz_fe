@@ -21,38 +21,6 @@ const PlayComponent = () => {
     time: { minutes: 2, seconds: 15 },
   });
 
-  // useEffect(() => {
-  //   // Initialize the first question
-  //   const currentQuestion = questions[state.currentQuestionIndex];
-  //   setState((prevState) => ({
-  //     ...prevState,
-  //     currentQuestion,
-  //   }));
-
-  //   // Start timer
-  //   const timerInterval = setInterval(() => {
-  //     setState((prevState) => {
-  //       const { minutes, seconds } = prevState.time;
-  //       if (seconds === 0 && minutes === 0) {
-  //         clearInterval(timerInterval);
-  //         alert('Time is up! Quiz Completed!'); // Notify user
-  //         navigate('/play/quizSummary'); // Optional: Navigate to a "Quiz Completed" page
-  //       return prevState;
-  //         return prevState;
-  //       }
-  //       const newSeconds = seconds === 0 ? 59 : seconds - 1;
-  //       const newMinutes = seconds === 0 ? minutes - 1 : minutes;
-
-  //       return {
-  //         ...prevState,
-  //         time: { minutes: newMinutes, seconds: newSeconds },
-  //       };
-  //     });
-  //   }, 1000);
-
-  //   return () => clearInterval(timerInterval);
-  // }, [state.currentQuestionIndex]);
-
   useEffect(() => {
     // Initialize the first question
     const currentQuestion = questions[state.currentQuestionIndex];

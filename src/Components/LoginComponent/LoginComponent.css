@@ -1,0 +1,126 @@
+/* General styles for login container */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: rgba(249, 249, 249, 0.407); /* Slight transparency for background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative; /* Required for overlay positioning */
+    z-index: 1;
+}
+
+/* Apply the background image to the whole page */
+body {
+    background-image: url('../../assets/img/olli-kilpi-LJjHV4E4V28-unsplash.jpg');
+    background-repeat: no-repeat;
+    background-position: center center; /* Centers the image */
+    background-size: cover; /* Ensures the image covers the entire page */
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+}
+
+/* Heading styles */
+.login-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Form group styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: all 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Checkbox and label for 'Remember me' */
+.form-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-check input {
+    margin-right: 10px;
+}
+
+.form-check label {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Button styles */
+.btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid #007bff;
+    color: #007bff;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-outline:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Text link styles */
+.text-right {
+    text-align: right;
+}
+
+.text-right a {
+    border: none;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.text-right a:hover {
+    color: #ffffff;
+}
+
+.mt-3 {
+    margin-top: 15px;
+}
