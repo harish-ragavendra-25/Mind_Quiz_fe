@@ -21,6 +21,38 @@ const PlayComponent = () => {
     time: { minutes: 2, seconds: 15 },
   });
 
+  // useEffect(() => {
+  //   // Initialize the first question
+  //   const currentQuestion = questions[state.currentQuestionIndex];
+  //   setState((prevState) => ({
+  //     ...prevState,
+  //     currentQuestion,
+  //   }));
+
+  //   // Start timer
+  //   const timerInterval = setInterval(() => {
+  //     setState((prevState) => {
+  //       const { minutes, seconds } = prevState.time;
+  //       if (seconds === 0 && minutes === 0) {
+  //         clearInterval(timerInterval);
+  //         alert('Time is up! Quiz Completed!'); // Notify user
+  //         navigate('/play/quizSummary'); // Optional: Navigate to a "Quiz Completed" page
+  //       return prevState;
+  //         return prevState;
+  //       }
+  //       const newSeconds = seconds === 0 ? 59 : seconds - 1;
+  //       const newMinutes = seconds === 0 ? minutes - 1 : minutes;
+
+  //       return {
+  //         ...prevState,
+  //         time: { minutes: newMinutes, seconds: newSeconds },
+  //       };
+  //     });
+  //   }, 1000);
+
+  //   return () => clearInterval(timerInterval);
+  // }, [state.currentQuestionIndex]);
+
   useEffect(() => {
     // Initialize the first question
     const currentQuestion = questions[state.currentQuestionIndex];
@@ -28,65 +60,44 @@ const PlayComponent = () => {
       ...prevState,
       currentQuestion,
     }));
-
-
-    // //handleDisableButton
-    // const handleDisableButton = () => {
-    //   if()
-    // }
-
+  
+    // Handle button disable logic
+    const handleDisableButton = () => {
+      const isFirstQuestion = state.currentQuestionIndex === 0;
+      const isLastQuestion = state.currentQuestionIndex + 1 === questions.length;
+  
+      setState((prevState) => ({
+        ...prevState,
+        previousButtonDisabled: isFirstQuestion,
+        nextButtonDisabled: isLastQuestion,
+      }));
+    };
+  
+    handleDisableButton();
+  
     // Start timer
     const timerInterval = setInterval(() => {
       setState((prevState) => {
         const { minutes, seconds } = prevState.time;
         if (seconds === 0 && minutes === 0) {
           clearInterval(timerInterval);
-          alert('Time is up! Quiz Completed!'); // Notify user
-          navigate('/play/quizSummary'); // Optional: Navigate to a "Quiz Completed" page
-        return prevState;
+          endGame();
           return prevState;
         }
         const newSeconds = seconds === 0 ? 59 : seconds - 1;
         const newMinutes = seconds === 0 ? minutes - 1 : minutes;
-
+    
         return {
           ...prevState,
           time: { minutes: newMinutes, seconds: newSeconds },
         };
       });
     }, 1000);
-
+    
+  
     return () => clearInterval(timerInterval);
   }, [state.currentQuestionIndex]);
-
-  // const handleOptionClick = (option) => {
-  //   if (option === state.currentQuestion.answer) {
-  //     setState((prevState) => ({
-  //       ...prevState,
-  //       score: prevState.score + 1,
-  //     }));
-  //     document.getElementById('correct-sound').play();
-  //     alert('Correct!');
-  //   } else {
-  //     document.getElementById('wrong-sound').play();
-  //     alert('Wrong Answer!');
-  //   }
-
-  //   // Move to next question or end quiz
-  //   if (state.currentQuestionIndex + 1 < questions.length) {
-  //     setState((prevState) => ({
-  //       ...prevState,
-  //       currentQuestionIndex: prevState.currentQuestionIndex + 1,
-  //     }));
-  //     // options.forEach(option => {
-  //     //   option.style.visibility = 'visible'; // Reset to visible
-  //     // });
-      
-  //   } else {
-  //     alert('Quiz Completed!');
-  //   }
-  // };
-
+  
   const handleOptionClick = (option) => {
     if (option === state.currentQuestion.answer) {
       setState((prevState) => ({
@@ -116,30 +127,12 @@ const PlayComponent = () => {
       alert('Quiz Completed!');
       navigate('/play/quizSummary'); // Optional: Navigate to summary page
     }
+
+    if (state.currentQuestionIndex + 1 === questions.length) {
+      endGame();
+    }
   };
   
-
-//   const handleNextButtonClick = () => {
-//     playButtonSound();
-  
-//     // Reset option visibility before moving to the next question
-//     const options = Array.from(document.querySelectorAll('.option'));
-//     options.forEach(option => {
-//       option.style.display = 'block'; // Reset to default display type
-//     });
-  
-//     if (state.currentQuestionIndex + 1 < questions.length) {
-//       setState((prevState) => ({
-//         ...prevState,
-//         currentQuestionIndex: prevState.currentQuestionIndex + 1,
-//         previousRandomNumbers: [], // Clear previously hidden options for the next question
-//       }));
-//     } else {
-//       alert('No more questions!');
-//     }
-//   };
-  
-
   const handlePreviousButtonClick = () => {
     playButtonSound();
     if (state.currentQuestionIndex > 0) {
@@ -152,9 +145,18 @@ const PlayComponent = () => {
 
   const handleQuitButtonClick = () => {
     playButtonSound();
+    const playerStats = {
+      score: state.score,
+      numberOfQuestions: questions.length,
+      numberOfAnsweredQuestions: state.currentQuestionIndex + 1,
+      correctAnswers: state.score, // Assuming the score tracks correct answers
+      wrongAnswers: state.currentQuestionIndex + 1 - state.score,
+      hintsUsed: 2 - state.hints
+    };
     if (window.confirm('Are you sure you want to quit?')) {
       alert('You have quit the quiz.');
-      navigate('/');
+      navigate('/play/quizSummary', { state: playerStats });
+      console.log(playerStats)
     }
   };
 
@@ -221,6 +223,22 @@ const PlayComponent = () => {
       alert('No more questions!');
     }
   };
+
+  const endGame = () => {
+    alert('Quiz has ended!');
+    const playerStats = {
+      score: state.score,
+      numberOfQuestions: questions.length,
+      numberOfAnsweredQuestions: state.currentQuestionIndex + 1,
+      correctAnswers: state.score, // Assuming the score tracks correct answers
+      wrongAnswers: state.currentQuestionIndex + 1 - state.score,
+      hintsUsed: 2 - state.hints
+    };
+    setTimeout(() => {
+      navigate('/play/quizSummary', { state: playerStats });
+      console.log(playerStats);
+    }, 1000);
+  };  
   
   return (
     <Fragment>
@@ -286,11 +304,24 @@ const PlayComponent = () => {
           )}
         </div>
 
-        <div className="button-container">
-          <button onClick={handlePreviousButtonClick}>Previous</button>
-          <button onClick={handleNextButtonClick}>Next</button>
-          <button onClick={handleQuitButtonClick}>Quit</button>
-        </div>
+    <div className="button-container">
+      <button
+        onClick={handlePreviousButtonClick}
+        disabled={state.previousButtonDisabled}
+      >
+        Previous
+      </button>
+      
+      <button
+        onClick={handleNextButtonClick}
+        disabled={state.nextButtonDisabled}
+      >
+        Next
+      </button>
+
+      <button onClick={handleQuitButtonClick}>Quit</button>
+    </div>
+
       </div>
     </Fragment>
   );

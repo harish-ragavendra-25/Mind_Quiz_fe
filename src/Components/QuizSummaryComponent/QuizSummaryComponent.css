@@ -1,0 +1,127 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+/* Quiz Summary Container */
+.quiz-summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Centering the content */
+.container {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(30px);
+    animation: slideUp 1s forwards;
+}
+
+/* Heading Styles */
+h1 {
+    font-size: 2.5rem;
+    color: #4CAF50;
+    margin-bottom: 20px;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    animation: fadeInUp 1s ease-in-out 0.5s;
+}
+
+/* Stats Section */
+.stats {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+.stats p {
+    margin: 10px 0;
+    line-height: 1.6;
+    opacity: 0;
+    animation: fadeInUp 1s ease-in-out 1s forwards;
+}
+
+/* Action Links */
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.actions a {
+    text-decoration: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    color: white;
+    background-color: #4CAF50;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.actions a:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.actions a:active {
+    background-color: #388e3c;
+}
+
+/* No Stats Section */
+.no-stats {
+    font-size: 1.8rem;
+    color: #ff4d4d;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeInUp 1s ease-in-out 0.5s forwards;
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
