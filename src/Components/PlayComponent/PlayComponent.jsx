@@ -14,9 +14,10 @@ const PlayComponent = () => {
     currentQuestionIndex: 0,
     score: 0,
     hints: 2,
-    lifelines: 2,
     currentQuestion: {},
     previousRandomNumbers: [],
+    nextButtonDisabled:false,
+    previousButtonDisabled:true,
     time: { minutes: 2, seconds: 15 },
   });
 
@@ -28,12 +29,21 @@ const PlayComponent = () => {
       currentQuestion,
     }));
 
+
+    // //handleDisableButton
+    // const handleDisableButton = () => {
+    //   if()
+    // }
+
     // Start timer
     const timerInterval = setInterval(() => {
       setState((prevState) => {
         const { minutes, seconds } = prevState.time;
         if (seconds === 0 && minutes === 0) {
           clearInterval(timerInterval);
+          alert('Time is up! Quiz Completed!'); // Notify user
+          navigate('/play/quizSummary'); // Optional: Navigate to a "Quiz Completed" page
+        return prevState;
           return prevState;
         }
         const newSeconds = seconds === 0 ? 59 : seconds - 1;
@@ -49,6 +59,34 @@ const PlayComponent = () => {
     return () => clearInterval(timerInterval);
   }, [state.currentQuestionIndex]);
 
+  // const handleOptionClick = (option) => {
+  //   if (option === state.currentQuestion.answer) {
+  //     setState((prevState) => ({
+  //       ...prevState,
+  //       score: prevState.score + 1,
+  //     }));
+  //     document.getElementById('correct-sound').play();
+  //     alert('Correct!');
+  //   } else {
+  //     document.getElementById('wrong-sound').play();
+  //     alert('Wrong Answer!');
+  //   }
+
+  //   // Move to next question or end quiz
+  //   if (state.currentQuestionIndex + 1 < questions.length) {
+  //     setState((prevState) => ({
+  //       ...prevState,
+  //       currentQuestionIndex: prevState.currentQuestionIndex + 1,
+  //     }));
+  //     // options.forEach(option => {
+  //     //   option.style.visibility = 'visible'; // Reset to visible
+  //     // });
+      
+  //   } else {
+  //     alert('Quiz Completed!');
+  //   }
+  // };
+
   const handleOptionClick = (option) => {
     if (option === state.currentQuestion.answer) {
       setState((prevState) => ({
@@ -61,18 +99,25 @@ const PlayComponent = () => {
       document.getElementById('wrong-sound').play();
       alert('Wrong Answer!');
     }
-
+  
+    // Reset visibility of all options
+    const options = document.querySelectorAll('.option');
+    options.forEach((option) => {
+      option.style.visibility = 'visible';
+    });
+  
     // Move to next question or end quiz
     if (state.currentQuestionIndex + 1 < questions.length) {
       setState((prevState) => ({
         ...prevState,
         currentQuestionIndex: prevState.currentQuestionIndex + 1,
       }));
-      handleNextButtonClick();
     } else {
       alert('Quiz Completed!');
+      navigate('/play/quizSummary'); // Optional: Navigate to summary page
     }
   };
+  
 
 //   const handleNextButtonClick = () => {
 //     playButtonSound();
@@ -109,7 +154,7 @@ const PlayComponent = () => {
     playButtonSound();
     if (window.confirm('Are you sure you want to quit?')) {
       alert('You have quit the quiz.');
-      navigate('/')
+      navigate('/');
     }
   };
 
@@ -191,15 +236,6 @@ const PlayComponent = () => {
 
       <div className="questions">
         <div className="lifeline-container">
-          
-          <p className='lifeline'>
-            <img
-              id="lifeline_img"
-              src="https://img.icons8.com/external-victoruler-solid-victoruler/64/external-chance-business-and-finance-victoruler-solid-victoruler.png"
-              alt="lifeline"
-            />
-            {state.lifelines}
-          </p>
 
           <p onClick={handleHints} className='lifeline'>
             <img

@@ -26,10 +26,9 @@ const QuizInstructionComponent = () => {
                 </li>
 
                 <li>
-                    Each game has 2 lifelines namely.
+                    Each game has 1 lifelines namely.
                     <ul id='sublist'>
-                        <li>2 50-50 chances</li>
-                        <li>5 Hints</li>
+                        <li>3 Hints</li>
                     </ul>
                     <img src='\src\assets\img\answer.png' alt="Quiz app answer Example" />
                 </li>
